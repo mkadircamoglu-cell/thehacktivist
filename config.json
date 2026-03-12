@@ -13,12 +13,12 @@
         "profileOpacity": 0.4,
         "profileBlur": 10,
         "gradientEnabled": true,
-        "primaryColor": "#000000",
-        "secondaryColor": "#6e6e6e",
-        "accentColor": "#ffffff",
-        "textColor": "#000000",
+        "primaryColor": "#f44ebf",
+        "secondaryColor": "#dd31be",
+        "accentColor": "#ff0000",
+        "textColor": "#ff24cf",
         "backgroundColor": "#0f0f0f",
-        "iconColor": "#000000"
+        "iconColor": "#94004f"
     },
     "effects": {
         "animatedTitle": true,
