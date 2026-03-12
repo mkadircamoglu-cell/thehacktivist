@@ -1,0 +1,279 @@
+/* ============================================= */
+/*          TABLET (max-width: 768px)             */
+/* ============================================= */
+
+@media screen and (max-width: 768px) {
+
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .profile-wrapper {
+        padding: 20px 16px;
+        min-height: 100vh;
+        min-height: 100dvh; /* Dynamic viewport height (mobil adres çubuğu) */
+    }
+
+    .profile-card.glass {
+        min-width: 280px;
+        max-width: 400px;
+        padding: 32px 28px 28px;
+        border-radius: 20px;
+    }
+
+    .avatar {
+        width: 88px;
+        height: 88px;
+    }
+
+    .avatar-ring {
+        width: 100px;
+        height: 100px;
+    }
+
+    .avatar-glow {
+        width: 108px;
+        height: 108px;
+    }
+
+    .username {
+        font-size: 1.4rem;
+    }
+
+    .description {
+        font-size: 0.85rem;
+    }
+
+    .socials-container {
+        gap: 12px;
+    }
+
+    .social-link {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+    }
+
+    .social-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .sound-toggle {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ============================================= */
+/*          MOBİL (max-width: 480px)              */
+/* ============================================= */
+
+@media screen and (max-width: 480px) {
+
+    .profile-wrapper {
+        padding: 16px 12px;
+    }
+
+    .profile-card.glass {
+        min-width: 260px;
+        max-width: 100%;
+        width: calc(100% - 24px);
+        padding: 28px 20px 24px;
+        border-radius: 18px;
+    }
+
+    .avatar {
+        width: 80px;
+        height: 80px;
+    }
+
+    .avatar-ring {
+        width: 92px;
+        height: 92px;
+    }
+
+    .avatar-glow {
+        width: 100px;
+        height: 100px;
+    }
+
+    .username {
+        font-size: 1.25rem;
+    }
+
+    .description {
+        font-size: 0.8rem;
+        padding: 0 4px;
+    }
+
+    .location-text {
+        font-size: 0.75rem;
+    }
+
+    .socials-container {
+        gap: 10px;
+    }
+
+    .social-link {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+    }
+
+    .social-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .divider {
+        width: 80%;
+    }
+}
+
+/* ============================================= */
+/*      ÇOK KÜÇÜK EKRANLAR (max-width: 360px)    */
+/* ============================================= */
+
+@media screen and (max-width: 360px) {
+
+    .profile-card.glass {
+        padding: 24px 16px 20px;
+        border-radius: 16px;
+    }
+
+    .avatar {
+        width: 72px;
+        height: 72px;
+    }
+
+    .username {
+        font-size: 1.1rem;
+    }
+
+    .description {
+        font-size: 0.78rem;
+    }
+
+    .social-link {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+/* ============================================= */
+/*         LANDSCAPE (YATAY YÖNELIM)              */
+/* ============================================= */
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+
+    body {
+        overflow-y: auto;
+    }
+
+    .profile-wrapper {
+        min-height: auto;
+        padding: 16px;
+        align-items: flex-start;
+    }
+
+    .profile-card.glass {
+        padding: 24px 28px 20px;
+        margin: 16px auto;
+    }
+
+    .avatar {
+        width: 72px;
+        height: 72px;
+    }
+
+    .avatar-container {
+        margin-bottom: 10px;
+    }
+
+    .username {
+        font-size: 1.2rem;
+    }
+
+    .description {
+        margin-bottom: 8px;
+        font-size: 0.82rem;
+    }
+
+    .location-container {
+        margin-bottom: 10px;
+    }
+
+    .divider {
+        margin: 8px auto;
+    }
+}
+
+/* ============================================= */
+/*         YÜKSEK ÇÖZÜNÜRLÜK (4K vb.)            */
+/* ============================================= */
+
+@media screen and (min-width: 2560px) {
+
+    .profile-card.glass {
+        max-width: 540px;
+        padding: 48px 44px 40px;
+    }
+
+    .avatar {
+        width: 120px;
+        height: 120px;
+    }
+
+    .username {
+        font-size: 2rem;
+    }
+
+    .description {
+        font-size: 1.05rem;
+    }
+
+    .social-link {
+        width: 48px;
+        height: 48px;
+    }
+
+    .social-icon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* ============================================= */
+/*       AZALTILMIŞ HAREKETLİLİK TERCİHİ          */
+/*   (Kullanıcı animasyonları kapatmışsa)          */
+/* ============================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .profile-card.glass {
+        opacity: 1;
+        transform: none;
+    }
+
+    .snowflake,
+    .matrix-column {
+        animation: none !important;
+        display: none;
+    }
+
+    .effects-overlay {
+        display: none;
+    }
+}

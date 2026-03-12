@@ -1,0 +1,352 @@
+/* ============================================= */
+/*         TYPING (YAZIM) EFEKTİ                  */
+/* ============================================= */
+
+.username.effect-typing {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--accent-color);
+    animation:
+        typing 2.5s steps(30, end) forwards,
+        blink-caret 0.75s step-end infinite;
+    width: 0;
+}
+
+@keyframes typing {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes blink-caret {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: var(--accent-color); }
+}
+
+/* ============================================= */
+/*            GLITCH EFEKTİ                       */
+/* ============================================= */
+
+.username.effect-glitch {
+    position: relative;
+    animation: glitch-skew 4s infinite linear alternate-reverse;
+}
+
+.username.effect-glitch::before,
+.username.effect-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.username.effect-glitch::before {
+    color: #ff00ff;
+    animation: glitch-effect 3s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translate(-2px, -1px);
+    opacity: 0.7;
+}
+
+.username.effect-glitch::after {
+    color: #00ffff;
+    animation: glitch-effect 2s infinite linear alternate-reverse;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translate(2px, 1px);
+    opacity: 0.7;
+}
+
+@keyframes glitch-effect {
+    0% { transform: translate(0); }
+    20% { transform: translate(-3px, 2px); }
+    40% { transform: translate(-2px, -1px); }
+    60% { transform: translate(3px, 1px); }
+    80% { transform: translate(1px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch-skew {
+    0% { transform: skew(0deg); }
+    2% { transform: skew(1deg); }
+    4% { transform: skew(0deg); }
+    48% { transform: skew(0deg); }
+    50% { transform: skew(-1deg); }
+    52% { transform: skew(0deg); }
+    100% { transform: skew(0deg); }
+}
+
+/* ============================================= */
+/*             DALGA (WAVE) EFEKTİ                */
+/* ============================================= */
+
+.username.effect-wave span {
+    display: inline-block;
+    animation: wave 1.5s ease-in-out infinite;
+    animation-delay: calc(0.08s * var(--char-index));
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ============================================= */
+/*        KULLANICI ADI GLOW / IŞILTI             */
+/*         (TAMAMEN YENİDEN TASARLANDI)           */
+/* ============================================= */
+
+/* --- Temel Parıltı Animasyonu --- */
+.username.glow-active {
+    position: relative;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        text-shadow:
+            0 0 4px rgba(255, 255, 255, 0.4),
+            0 0 11px var(--accent-color),
+            0 0 22px var(--accent-color),
+            0 0 40px var(--accent-color);
+        filter: brightness(1);
+    }
+    50% {
+        text-shadow:
+            0 0 6px rgba(255, 255, 255, 0.6),
+            0 0 16px var(--accent-color),
+            0 0 35px var(--accent-color),
+            0 0 60px var(--accent-color),
+            0 0 80px var(--accent-color);
+        filter: brightness(1.15);
+    }
+}
+
+/* --- Altında Yansıma Efekti --- */
+.username.glow-active::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: var(--accent-color);
+    opacity: 0.12;
+    transform: scaleY(-0.4) translateY(-4px);
+    filter: blur(4px);
+    pointer-events: none;
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+}
+
+/* --- Işık Geçişi Şeridi (Shimmer) --- */
+.username.glow-active::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -10%;
+    width: 30%;
+    height: calc(100% + 4px);
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0) 20%,
+        rgba(255, 255, 255, 0.25) 50%,
+        rgba(255, 255, 255, 0) 80%,
+        transparent 100%
+    );
+    animation: shimmerSlide 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes shimmerSlide {
+    0% {
+        left: -30%;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        left: 110%;
+        opacity: 0;
+    }
+}
+
+/* ============================================= */
+/*        AVATAR EFEKTLERI                        */
+/* ============================================= */
+
+/* Glow Efekti */
+.avatar-container.effect-glow .avatar {
+    box-shadow:
+        0 0 15px var(--accent-color),
+        0 0 30px rgba(233, 69, 96, 0.3),
+        0 0 60px rgba(233, 69, 96, 0.1);
+    animation: avatarGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes avatarGlow {
+    0% {
+        box-shadow:
+            0 0 10px var(--accent-color),
+            0 0 20px rgba(233, 69, 96, 0.2);
+    }
+    100% {
+        box-shadow:
+            0 0 20px var(--accent-color),
+            0 0 40px rgba(233, 69, 96, 0.4),
+            0 0 60px rgba(233, 69, 96, 0.15);
+    }
+}
+
+/* Ring Pulse (Halka Puls) Efekti */
+.avatar-container.effect-ring-pulse .avatar-ring {
+    opacity: 1;
+    animation: ringPulse 2s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        border-color: var(--accent-color);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.4);
+        opacity: 0;
+        border-color: var(--accent-color);
+    }
+}
+
+.avatar-container.effect-ring-pulse .avatar-ring::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    animation: ringPulse 2s ease-in-out infinite 0.5s;
+}
+
+/* Rotate (Döndürme) Efekti */
+.avatar-container.effect-rotate .avatar {
+    animation: avatarRotate 8s linear infinite;
+    border: 3px solid var(--accent-color);
+}
+
+@keyframes avatarRotate {
+    0% {
+        border-color: var(--accent-color);
+        transform: rotate(0deg);
+    }
+    25% {
+        border-color: #00ffff;
+    }
+    50% {
+        border-color: #ff00ff;
+        transform: rotate(180deg);
+    }
+    75% {
+        border-color: #ffff00;
+    }
+    100% {
+        border-color: var(--accent-color);
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================= */
+/*       SOSYAL İKON HOVER ANİMASYONU             */
+/* ============================================= */
+
+.social-link {
+    transition:
+        transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.social-link:active {
+    transform: translateY(-1px) scale(0.95);
+}
+
+/* ============================================= */
+/*       SOSYAL İKON GLOW (İYİLEŞTİRİLMİŞ)       */
+/* ============================================= */
+
+.social-link.glow-active {
+    animation: socialGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes socialGlowPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 6px rgba(233, 69, 96, 0.3),
+            0 0 12px rgba(233, 69, 96, 0.1);
+    }
+    50% {
+        box-shadow:
+            0 0 10px rgba(233, 69, 96, 0.5),
+            0 0 20px rgba(233, 69, 96, 0.2),
+            0 0 30px rgba(233, 69, 96, 0.1);
+    }
+}
+
+.social-link.glow-active:hover {
+    box-shadow:
+        0 0 14px var(--accent-color),
+        0 0 28px rgba(233, 69, 96, 0.3);
+}
+
+/* ============================================= */
+/*          GENEL ANİMASYONLAR                    */
+/* ============================================= */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}

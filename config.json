@@ -1,0 +1,50 @@
+{
+    "profile": {
+        "username": "thehacktivist",
+        "description": "Siber güvenlik ile ilgileniyorum.",
+        "location": "İstanbul",
+        "avatarURL": "assets/images/default-avatar.png"
+    },
+    "background": {
+        "youtubeVideoID": "53O-PvffEh4",
+        "overlayEffect": "matrix"
+    },
+    "appearance": {
+        "profileOpacity": 0.4,
+        "profileBlur": 10,
+        "gradientEnabled": true,
+        "primaryColor": "#000000",
+        "secondaryColor": "#6e6e6e",
+        "accentColor": "#ffffff",
+        "textColor": "#000000",
+        "backgroundColor": "#0f0f0f",
+        "iconColor": "#000000"
+    },
+    "effects": {
+        "animatedTitle": true,
+        "titleEffect": "glitch",
+        "glowUsername": true,
+        "glowSocials": true,
+        "glowBadges": true,
+        "avatarEffect": "ring-pulse",
+        "changeBoxColors": true
+    },
+    "audio": {
+        "soundControl": true
+    },
+    "icons": {
+        "monochrome": true
+    },
+    "socials": [
+        {
+            "platform": "telegram",
+            "url": "https://t.me/bluexe0",
+            "icon": "assets/icons/telegram.svg"
+        },
+        {
+            "platform": "github",
+            "url": "https://github.com/mkadircamoglu-cell",
+            "icon": "assets/icons/github.svg"
+        }
+    ]
+}

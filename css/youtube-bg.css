@@ -1,0 +1,54 @@
+/* ============================================= */
+/*       YOUTUBE TAM EKRAN ARKA PLAN              */
+/*              (GÜNCELLENMİŞ)                    */
+/* ============================================= */
+
+.youtube-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.youtube-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Ekranı tamamen kapla (16:9 oran korunarak) */
+    width: 100vw;
+    height: 56.25vw;       /* 100 / 1.7778 */
+    min-width: 177.78vh;   /* 100 * 1.7778 */
+    min-height: 100vh;
+
+    border: none;
+    pointer-events: none;
+}
+
+.youtube-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+/* Video yokken */
+.youtube-background.no-video {
+    background: var(--bg-color, #0f0f0f);
+}
+
+.youtube-background.no-video .youtube-iframe {
+    display: none;
+}
+
+.youtube-background.no-video .youtube-overlay {
+    background: transparent;
+}

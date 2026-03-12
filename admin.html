@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Yönetim Paneli</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/default-avatar.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- ============================================= -->
+    <!--              ÜST BAR (HEADER)                  -->
+    <!-- ============================================= -->
+    <header class="admin-header">
+        <div class="header-left">
+            <div class="header-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                </svg>
+                <h1 class="header-title">Yönetim Paneli</h1>
+            </div>
+            <span class="header-badge">Admin</span>
+        </div>
+        <div class="header-right">
+            <a href="index.html" class="btn-preview" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                Siteyi Önizle
+            </a>
+        </div>
+    </header>
+
+
+    <!-- ============================================= -->
+    <!--              ANA İÇERİK ALANI                  -->
+    <!-- ============================================= -->
+    <main class="admin-main">
+
+        <!-- ========================================= -->
+        <!--    AKSIYON BUTONLARI (İndir / Yükle)       -->
+        <!-- ========================================= -->
+        <section class="action-bar">
+            <div class="action-bar-inner">
+                <div class="action-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                    <span>Değişiklikler anlık kaydedilmez. Ayarları indirip repoya yüklemen gerekir.</span>
+                </div>
+                <div class="action-buttons">
+                    <!-- Ayarları Yükle -->
+                    <label for="import-config" class="btn btn-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        Ayarları Yükle
+                    </label>
+                    <input type="file" id="import-config" accept=".json" hidden>
+
+                    <!-- Ayarları İndir -->
+                    <button type="button" id="export-config" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Ayarları İndir (config.json)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ========================================= -->
+        <!--         3 SÜTUNLU ANA GRID YAPISI          -->
+        <!-- ========================================= -->
+        <div class="admin-grid">
+
+
+            <!-- ===================================== -->
+            <!--  BÖLÜM 1: GENEL ÖZELLEŞTİRME          -->
+            <!-- ===================================== -->
+            <section class="panel-section" id="section-general">
+                <div class="section-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 20h9"/>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                    </svg>
+                    <h2>Genel Özelleştirme</h2>
+                </div>
+                <div class="section-body">
+
+                    <!-- Kullanıcı Adı -->
+                    <div class="form-group">
+                        <label for="input-username" class="form-label">Kullanıcı Adı</label>
+                        <input type="text" id="input-username" class="form-input" placeholder="thehacktivist" autocomplete="off">
+                    </div>
+
+                    <!-- Açıklama / Biyografi -->
+                    <div class="form-group">
+                        <label for="input-description" class="form-label">Açıklama</label>
+                        <textarea id="input-description" class="form-textarea" rows="3" placeholder="IT Alanında Gelişen Biri."></textarea>
+                    </div>
+
+                    <!-- Profil Fotoğrafı URL -->
+                    <div class="form-group">
+                        <label for="input-avatar-url" class="form-label">Profil Fotoğrafı URL</label>
+                        <input type="text" id="input-avatar-url" class="form-input" placeholder="assets/images/default-avatar.png" autocomplete="off">
+                    </div>
+
+                    <!-- Konum -->
+                    <div class="form-group">
+                        <label for="input-location" class="form-label">Konum</label>
+                        <input type="text" id="input-location" class="form-input" placeholder="PaxSystem" autocomplete="off">
+                    </div>
+
+                    <!-- YouTube Video ID -->
+                    <div class="form-group">
+                        <label for="input-youtube-id" class="form-label">YouTube Arka Plan Video ID</label>
+                        <div class="input-with-hint">
+                            <input type="text" id="input-youtube-id" class="form-input" placeholder="dQw4w9WgXcQ" autocomplete="off">
+                            <span class="input-hint">youtube.com/watch?v=<strong>BU_KISIM</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Profil Opaklığı Slider -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            Profil Opaklığı
+                            <span id="opacity-value" class="slider-value">50%</span>
+                        </label>
+                        <input type="range" id="input-opacity" class="form-range" min="10" max="100" value="50" step="5">
+                        <div class="range-labels">
+                            <span>10%</span>
+                            <span>100%</span>
+                        </div>
+                    </div>
+
+                    <!-- Profil Bulanıklığı Slider -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            Profil Bulanıklığı
+                            <span id="blur-value" class="slider-value">20px</span>
+                        </label>
+                        <input type="range" id="input-blur" class="form-range" min="0" max="100" value="20" step="5">
+                        <div class="range-labels">
+                            <span>0px</span>
+                            <span>100px</span>
+                        </div>
+                    </div>
+
+                    <!-- Arka Plan Efektleri Dropdown -->
+                    <div class="form-group">
+                        <label for="input-overlay-effect" class="form-label">Arka Plan Efektleri</label>
+                        <div class="select-wrapper">
+                            <select id="input-overlay-effect" class="form-select">
+                                <option value="none">Yok</option>
+                                <option value="snow">❄️ Kar Taneleri</option>
+                                <option value="matrix">💚 Matrix Kodu</option>
+                            </select>
+                            <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Kullanıcı Adı Efektleri Dropdown -->
+                    <div class="form-group">
+                        <label for="input-title-effect" class="form-label">Kullanıcı Adı Efektleri</label>
+                        <div class="select-wrapper">
+                            <select id="input-title-effect" class="form-select">
+                                <option value="none">Yok</option>
+                                <option value="typing">⌨️ Yazım Efekti</option>
+                                <option value="glitch">⚡ Glitch</option>
+                                <option value="wave">🌊 Dalga</option>
+                            </select>
+                            <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Avatar Efekti Dropdown -->
+                    <div class="form-group">
+                        <label for="input-avatar-effect" class="form-label">Avatar Efekti</label>
+                        <div class="select-wrapper">
+                            <select id="input-avatar-effect" class="form-select">
+                                <option value="none">Yok</option>
+                                <option value="glow">✨ Glow (Işıltı)</option>
+                                <option value="ring-pulse">💫 Halka Puls</option>
+                                <option value="rotate">🔄 Döndürme</option>
+                            </select>
+                            <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Glow Ayarları Toggle'ları -->
+                    <div class="form-group">
+                        <label class="form-label">Işıltı (Glow) Ayarları</label>
+                        <div class="toggle-group">
+                            <!-- Kullanıcı Adı Glow -->
+                            <div class="toggle-row">
+                                <span class="toggle-label">Kullanıcı Adı</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="toggle-glow-username">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <!-- Sosyaller Glow -->
+                            <div class="toggle-row">
+                                <span class="toggle-label">Sosyal İkonlar</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="toggle-glow-socials">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <!-- Badge'ler Glow -->
+                            <div class="toggle-row">
+                                <span class="toggle-label">Badge'ler</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="toggle-glow-badges">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- ===================================== -->
+            <!--  BÖLÜM 2: RENK ÖZELLEŞTİRME            -->
+            <!-- ===================================== -->
+            <section class="panel-section" id="section-colors">
+                <div class="section-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="13.5" cy="6.5" r="2.5"/>
+                        <circle cx="17.5" cy="10.5" r="2.5"/>
+                        <circle cx="8.5" cy="7.5" r="2.5"/>
+                        <circle cx="6.5" cy="12.5" r="2.5"/>
+                        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+                    </svg>
+                    <h2>Renk Özelleştirme</h2>
+                </div>
+                <div class="section-body">
+
+                    <!-- Vurgu Rengi -->
+                    <div class="form-group">
+                        <label for="input-accent-color" class="form-label">Vurgu Rengi</label>
+                        <div class="color-input-group">
+                            <input type="color" id="picker-accent-color" class="form-color-picker" value="#e94560">
+                            <input type="text" id="input-accent-color" class="form-input form-input-color" placeholder="#e94560" maxlength="7">
+                        </div>
+                    </div>
+
+                    <!-- Metin Rengi -->
+                    <div class="form-group">
+                        <label for="input-text-color" class="form-label">Metin Rengi</label>
+                        <div class="color-input-group">
+                            <input type="color" id="picker-text-color" class="form-color-picker" value="#ffffff">
+                            <input type="text" id="input-text-color" class="form-input form-input-color" placeholder="#ffffff" maxlength="7">
+                        </div>
+                    </div>
+
+                    <!-- Arka Plan Rengi -->
+                    <div class="form-group">
+                        <label for="input-bg-color" class="form-label">Arka Plan Rengi</label>
+                        <div class="color-input-group">
+                            <input type="color" id="picker-bg-color" class="form-color-picker" value="#0f0f0f">
+                            <input type="text" id="input-bg-color" class="form-input form-input-color" placeholder="#0f0f0f" maxlength="7">
+                        </div>
+                    </div>
+
+                    <!-- İkon Rengi -->
+                    <div class="form-group">
+                        <label for="input-icon-color" class="form-label">İkon Rengi</label>
+                        <div class="color-input-group">
+                            <input type="color" id="picker-icon-color" class="form-color-picker" value="#ffffff">
+                            <input type="text" id="input-icon-color" class="form-input form-input-color" placeholder="#ffffff" maxlength="7">
+                        </div>
+                    </div>
+
+                    <!-- Ayırıcı -->
+                    <div class="section-divider"></div>
+
+                    <!-- Profil Gradyanı Toggle -->
+                    <div class="form-group">
+                        <div class="toggle-row toggle-row-large">
+                            <div class="toggle-info">
+                                <span class="toggle-label">Profil Gradyanı</span>
+                                <span class="toggle-description">Kapatırsan düz renk kullanılır</span>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="toggle-gradient" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Gradyan Renkleri (toggle açıkken görünür) -->
+                    <div id="gradient-colors" class="gradient-colors-group">
+                        <!-- Birincil Renk -->
+                        <div class="form-group">
+                            <label for="input-primary-color" class="form-label">Birincil Renk (Gradyan)</label>
+                            <div class="color-input-group">
+                                <input type="color" id="picker-primary-color" class="form-color-picker" value="#1a1a2e">
+                                <input type="text" id="input-primary-color" class="form-input form-input-color" placeholder="#1a1a2e" maxlength="7">
+                            </div>
+                        </div>
+
+                        <!-- İkincil Renk -->
+                        <div class="form-group">
+                            <label for="input-secondary-color" class="form-label">İkincil Renk (Gradyan)</label>
+                            <div class="color-input-group">
+                                <input type="color" id="picker-secondary-color" class="form-color-picker" value="#16213e">
+                                <input type="text" id="input-secondary-color" class="form-input form-input-color" placeholder="#16213e" maxlength="7">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gradyan Önizleme -->
+                    <div class="form-group">
+                        <label class="form-label">Gradyan Önizleme</label>
+                        <div id="gradient-preview" class="gradient-preview"></div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <!-- ===================================== -->
+            <!--  BÖLÜM 3: DİĞER ÖZELLEŞTİRMELER       -->
+            <!-- ===================================== -->
+            <section class="panel-section" id="section-other">
+                <div class="section-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" y1="21" x2="4" y2="14"/>
+                        <line x1="4" y1="10" x2="4" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12" y2="3"/>
+                        <line x1="20" y1="21" x2="20" y2="16"/>
+                        <line x1="20" y1="12" x2="20" y2="3"/>
+                        <line x1="1" y1="14" x2="7" y2="14"/>
+                        <line x1="9" y1="8" x2="15" y2="8"/>
+                        <line x1="17" y1="16" x2="23" y2="16"/>
+                    </svg>
+                    <h2>Diğer Özelleştirmeler</h2>
+                </div>
+                <div class="section-body">
+
+                    <!-- Toggle: Tek Renkli İkonlar -->
+                    <div class="toggle-row toggle-row-card">
+                        <div class="toggle-info">
+                            <span class="toggle-label">Tek Renkli İkonlar</span>
+                            <span class="toggle-description">Sosyal ikonları tek renge çevirir</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-monochrome">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Toggle: Ses Kontrolü -->
+                    <div class="toggle-row toggle-row-card">
+                        <div class="toggle-info">
+                            <span class="toggle-label">Ses Kontrolü</span>
+                            <span class="toggle-description">Video sesini aç/kapat butonunu gösterir</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-sound-control">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Toggle: Animasyonlu Başlık -->
+                    <div class="toggle-row toggle-row-card">
+                        <div class="toggle-info">
+                            <span class="toggle-label">Animasyonlu Başlık</span>
+                            <span class="toggle-description">Kullanıcı adına seçilen efekti uygular</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-animated-title">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Toggle: Kutu Renklerini Değiştir -->
+                    <div class="toggle-row toggle-row-card">
+                        <div class="toggle-info">
+                            <span class="toggle-label">Kutu Renklerini Değiştir</span>
+                            <span class="toggle-description">Profil kutusunun renklerini aktifleştirir</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle-change-box-colors">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Ayırıcı -->
+                    <div class="section-divider"></div>
+
+                    <!-- ===== Sosyal Medya Linkleri Yönetimi ===== -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 4px;">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                            </svg>
+                            Sosyal Medya Linkleri
+                        </label>
+                    </div>
+
+                    <!-- Sosyal Medya Listesi -->
+                    <div id="socials-list" class="socials-list">
+
+                        <!-- Sosyal: Telegram -->
+                        <div class="social-entry" data-platform="telegram">
+                            <div class="social-entry-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                                </svg>
+                                <span>Telegram</span>
+                            </div>
+                            <input type="text" id="social-telegram" class="form-input" placeholder="https://t.me/kullaniciadi" autocomplete="off">
+                        </div>
+
+                        <!-- Sosyal: GitHub -->
+                        <div class="social-entry" data-platform="github">
+                            <div class="social-entry-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                                <span>GitHub</span>
+                            </div>
+                            <input type="text" id="social-github" class="form-input" placeholder="https://github.com/kullaniciadi" autocomplete="off">
+                        </div>
+
+                        <!-- Sosyal: Mail -->
+                        <div class="social-entry" data-platform="mail">
+                            <div class="social-entry-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                                <span>E-posta</span>
+                            </div>
+                            <input type="text" id="social-mail" class="form-input" placeholder="mailto:ornek@mail.com" autocomplete="off">
+                        </div>
+
+                        <!-- Sosyal: Web -->
+                        <div class="social-entry" data-platform="web">
+                            <div class="social-entry-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="2" y1="12" x2="22" y2="12"/>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                </svg>
+                                <span>Web Sitesi</span>
+                            </div>
+                            <input type="text" id="social-web" class="form-input" placeholder="https://orneksite.com" autocomplete="off">
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+
+        </div> <!-- /.admin-grid -->
+
+    </main>
+
+
+    <!-- ============================================= -->
+    <!--              ALT BİLGİ (FOOTER)                -->
+    <!-- ============================================= -->
+    <footer class="admin-footer">
+        <p>Profil Yönetim Paneli &bull; config.json tabanlı &bull; GitHub Pages uyumlu</p>
+    </footer>
+
+
+    <!-- ============================================= -->
+    <!--        TOAST BİLDİRİM KONTEYNERI               -->
+    <!-- ============================================= -->
+    <div id="toast-container" class="toast-container"></div>
+
+
+    <!-- ============================================= -->
+    <!--             JavaScript Dosyaları               -->
+    <!-- ============================================= -->
+    <script src="js/admin.js"></script>
+    <script src="js/admin-export.js"></script>
+    <script src="js/admin-import.js"></script>
+
+</body>
+</html>

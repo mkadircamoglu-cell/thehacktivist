@@ -1,0 +1,451 @@
+/* ============================================= */
+/*            RESET & GENEL STILLER              */
+/* ============================================= */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color, #0f0f0f);
+    color: var(--text-color, #ffffff);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ============================================= */
+/*              CSS DEĞİŞKENLERİ                 */
+/* ============================================= */
+
+:root {
+    /* Varsayılan Renkler (config.json ile override edilir) */
+    --bg-color: #0f0f0f;
+    --text-color: #ffffff;
+    --accent-color: #e94560;
+    --icon-color: #ffffff;
+    --primary-color: #1a1a2e;
+    --secondary-color: #16213e;
+
+    /* Profil Kutusu */
+    --profile-opacity: 0.5;
+    --profile-blur: 20px;
+
+    /* Geçişler */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Gölgeler */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 20px rgba(233, 69, 96, 0.3);
+}
+
+/* ============================================= */
+/*              SEÇME & BAĞLANTI                 */
+/* ============================================= */
+
+::selection {
+    background: var(--accent-color);
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-normal);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: transparent;
+    font-family: inherit;
+}
+
+/* ============================================= */
+/*            PROFIL SARMALAYICI                  */
+/* ============================================= */
+
+.profile-wrapper {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 24px;
+}
+
+/* ============================================= */
+/*             AVATAR ALANI                      */
+/* ============================================= */
+
+.avatar-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+}
+
+.avatar-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+}
+
+.avatar-ring.active {
+    opacity: 1;
+}
+
+.avatar-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(15px);
+    transition: opacity var(--transition-normal);
+}
+
+.avatar-glow.active {
+    opacity: 0.4;
+}
+
+/* ============================================= */
+/*            KULLANICI ADI                       */
+/* ============================================= */
+
+.username-wrapper {
+    text-align: center;
+    margin-bottom: 8px;
+    min-height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.username {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--text-color);
+    transition: text-shadow var(--transition-normal);
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.username.glow-active {
+    text-shadow:
+        0 0 10px var(--accent-color),
+        0 0 20px var(--accent-color),
+        0 0 40px var(--accent-color);
+}
+
+/* ============================================= */
+/*             AÇIKLAMA / BİYOGRAFİ              */
+/* ============================================= */
+
+.description {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--text-color);
+    opacity: 0.8;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    padding: 0 8px;
+    word-break: break-word;
+    white-space: pre-line;
+}
+
+/* ============================================= */
+/*                   KONUM                       */
+/* ============================================= */
+
+.location-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+    transition: opacity var(--transition-normal);
+}
+
+.location-container.hidden {
+    display: none;
+}
+
+.location-icon {
+    color: var(--accent-color);
+    flex-shrink: 0;
+}
+
+.location-text {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* ============================================= */
+/*              AYIRICI ÇİZGİ                    */
+/* ============================================= */
+
+.divider {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 100%
+    );
+    margin: 12px auto;
+}
+
+/* ============================================= */
+/*          SOSYAL MEDYA İKONLARI                */
+/* ============================================= */
+
+.socials-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 4px 0;
+}
+
+.social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition:
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.social-link:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: var(--shadow-md);
+}
+
+.social-link.glow-active {
+    box-shadow:
+        0 0 8px var(--accent-color),
+        0 0 16px rgba(233, 69, 96, 0.2);
+}
+
+.social-link.glow-active:hover {
+    box-shadow:
+        0 0 12px var(--accent-color),
+        0 0 24px rgba(233, 69, 96, 0.3);
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    transition: filter var(--transition-fast);
+}
+
+.social-icon.monochrome {
+    filter: brightness(0) invert(1);
+}
+
+/* ============================================= */
+/*             SES KONTROL BUTONU                */
+/* ============================================= */
+
+.sound-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    transition:
+        background var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.sound-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.1);
+}
+
+.sound-toggle.hidden {
+    display: none;
+}
+
+.sound-icon {
+    pointer-events: none;
+}
+
+.sound-icon.hidden {
+    display: none;
+}
+
+/* ============================================= */
+/*            YÜKLEME EKRANI (LOADER)            */
+/* ============================================= */
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    background: var(--bg-color, #0f0f0f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.loader-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-spinner {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.spinner-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+}
+
+.spinner-ring:nth-child(2) {
+    width: 75%;
+    height: 75%;
+    top: 12.5%;
+    left: 12.5%;
+    border-top-color: transparent;
+    border-right-color: var(--accent-color);
+    animation-duration: 0.9s;
+    animation-direction: reverse;
+    opacity: 0.7;
+}
+
+.spinner-ring:nth-child(3) {
+    width: 50%;
+    height: 50%;
+    top: 25%;
+    left: 25%;
+    border-top-color: transparent;
+    border-bottom-color: var(--accent-color);
+    animation-duration: 0.7s;
+    opacity: 0.4;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================= */
+/*          YARDIMCI SINIFLAR (UTILITY)           */
+/* ============================================= */
+
+.hidden {
+    display: none !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
