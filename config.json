@@ -7,26 +7,26 @@
     },
     "background": {
         "youtubeVideoID": "53O-PvffEh4",
-        "overlayEffect": "matrix"
+        "overlayEffect": "none"
     },
     "appearance": {
         "profileOpacity": 0.4,
         "profileBlur": 10,
         "gradientEnabled": true,
-        "primaryColor": "#f44ebf",
-        "secondaryColor": "#dd31be",
-        "accentColor": "#ff0000",
-        "textColor": "#ff24cf",
+        "primaryColor": "#000000",
+        "secondaryColor": "#6e6e6e",
+        "accentColor": "#ffffff",
+        "textColor": "#000000",
         "backgroundColor": "#0f0f0f",
-        "iconColor": "#94004f"
+        "iconColor": "#000000"
     },
     "effects": {
         "animatedTitle": true,
-        "titleEffect": "glitch",
+        "titleEffect": "none",
         "glowUsername": true,
         "glowSocials": true,
         "glowBadges": true,
-        "avatarEffect": "ring-pulse",
+        "avatarEffect": "none",
         "changeBoxColors": true
     },
     "audio": {
