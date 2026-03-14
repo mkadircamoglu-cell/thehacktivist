@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Yönetim Paneli">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Blog Yönetim Paneli</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/default-avatar.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Dosyaları -->
+    <link rel="stylesheet" href="css/blog-admin.css">
+</head>
+<body>
+
+    <!-- ============================================= -->
+    <!--                   HEADER                      -->
+    <!-- ============================================= -->
+    <header class="ba-header">
+        <div class="ba-header-inner">
+
+            <!-- Sol: Geri Dönüş -->
+            <div class="ba-header-left">
+                <a href="index.html" class="ba-back-link" aria-label="Ana Sayfaya Dön">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"/>
+                        <polyline points="12 19 5 12 12 5"/>
+                    </svg>
+                    <span>Ana Sayfa</span>
+                </a>
+                <span class="ba-header-divider">|</span>
+                <a href="blog.html" class="ba-back-link" aria-label="Blog Sayfasına Git">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                    </svg>
+                    <span>Blog</span>
+                </a>
+            </div>
+
+            <!-- Orta: Başlık -->
+            <h1 class="ba-title">Blog Yönetimi</h1>
+
+            <!-- Sağ: Yazı Sayısı -->
+            <div class="ba-header-right">
+                <span class="ba-post-count" id="post-count">0 yazı</span>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- ============================================= -->
+    <!--              ANA İÇERİK ALANI                 -->
+    <!-- ============================================= -->
+    <main class="ba-main">
+        <div class="ba-layout">
+
+            <!-- ========================================= -->
+            <!--           SOL PANEL: YAZI FORMU            -->
+            <!-- ========================================= -->
+            <section class="ba-panel ba-form-panel">
+
+                <div class="ba-panel-header">
+                    <h2 class="ba-panel-title" id="form-panel-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Yeni Yazı Ekle
+                    </h2>
+                    <button id="form-reset-btn" class="ba-btn ba-btn-ghost ba-btn-sm hidden" aria-label="Formu Sıfırla">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        İptal
+                    </button>
+                </div>
+
+                <!-- Yazı Formu -->
+                <form id="post-form" class="ba-form" autocomplete="off">
+
+                    <!-- Gizli ID (düzenleme için) -->
+                    <input type="hidden" id="post-id" value="">
+
+                    <!-- Başlık -->
+                    <div class="ba-field">
+                        <label for="post-title" class="ba-label">
+                            Başlık
+                            <span class="ba-required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="post-title"
+                            class="ba-input"
+                            placeholder="Yazı başlığını girin..."
+                            required
+                            maxlength="120"
+                        >
+                        <span class="ba-char-count"><span id="title-count">0</span>/120</span>
+                    </div>
+
+                    <!-- Tarih + Etiket (Yan Yana) -->
+                    <div class="ba-field-row">
+
+                        <!-- Tarih -->
+                        <div class="ba-field">
+                            <label for="post-date" class="ba-label">
+                                Tarih
+                                <span class="ba-required">*</span>
+                            </label>
+                            <input
+                                type="date"
+                                id="post-date"
+                                class="ba-input"
+                                required
+                            >
+                        </div>
+
+                        <!-- Etiket -->
+                        <div class="ba-field">
+                            <label for="post-tag" class="ba-label">Etiket</label>
+                            <input
+                                type="text"
+                                id="post-tag"
+                                class="ba-input"
+                                placeholder="Teknoloji, Kişisel..."
+                                maxlength="30"
+                            >
+                        </div>
+
+                    </div>
+
+                    <!-- Kısa Özet -->
+                    <div class="ba-field">
+                        <label for="post-excerpt" class="ba-label">
+                            Kısa Özet
+                            <span class="ba-required">*</span>
+                        </label>
+                        <textarea
+                            id="post-excerpt"
+                            class="ba-textarea"
+                            placeholder="Yazının 2-3 cümlelik kısa özetini girin..."
+                            required
+                            maxlength="300"
+                            rows="3"
+                        ></textarea>
+                        <span class="ba-char-count"><span id="excerpt-count">0</span>/300</span>
+                    </div>
+
+                    <!-- Kapak Görseli URL -->
+                    <div class="ba-field">
+                        <label for="post-cover" class="ba-label">Kapak Görseli</label>
+                        <input
+                            type="text"
+                            id="post-cover"
+                            class="ba-input"
+                            placeholder="assets/images/blog/gorsel.jpg veya URL..."
+                        >
+                        <p class="ba-hint">Yerel dosya yolu veya harici URL. Boş bırakılabilir.</p>
+                    </div>
+
+                    <!-- Harici Yazı Linki -->
+                    <div class="ba-field">
+                        <label for="post-url" class="ba-label">
+                            Yazı Linki (Medium, Dev.to vb.)
+                        </label>
+                        <input
+                            type="url"
+                            id="post-url"
+                            class="ba-input"
+                            placeholder="https://medium.com/@kullanici/yazi-basligi"
+                        >
+                        <p class="ba-hint">Yazının yayınlandığı platform linki. Boş bırakılırsa "Yakında" görünür.</p>
+                    </div>
+
+                    <!-- Butonlar -->
+                    <div class="ba-form-actions">
+                        <button type="submit" id="form-submit-btn" class="ba-btn ba-btn-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Yazı Ekle
+                        </button>
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- ========================================= -->
+            <!--        SAĞ PANEL: YAZI LİSTESİ            -->
+            <!-- ========================================= -->
+            <section class="ba-panel ba-list-panel">
+
+                <div class="ba-panel-header">
+                    <h2 class="ba-panel-title">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"/>
+                            <line x1="8" y1="12" x2="21" y2="12"/>
+                            <line x1="8" y1="18" x2="21" y2="18"/>
+                            <line x1="3" y1="6" x2="3.01" y2="6"/>
+                            <line x1="3" y1="12" x2="3.01" y2="12"/>
+                            <line x1="3" y1="18" x2="3.01" y2="18"/>
+                        </svg>
+                        Yazılar
+                    </h2>
+
+                    <!-- Arama -->
+                    <div class="ba-search">
+                        <svg class="ba-search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <input
+                            type="text"
+                            id="search-input"
+                            class="ba-search-input"
+                            placeholder="Yazı ara..."
+                        >
+                    </div>
+                </div>
+
+                <!-- Yazı Listesi -->
+                <div id="posts-list" class="ba-posts-list">
+                    <!-- JS tarafından dinamik olarak doldurulacak -->
+
+                    <!--
+                        Örnek yapı (blog-admin.js bu şekilde oluşturacak):
+
+                        <div class="ba-post-item" data-id="1">
+                            <div class="ba-post-item-info">
+                                <span class="ba-post-item-title">Yazı Başlığı</span>
+                                <div class="ba-post-item-meta">
+                                    <span class="ba-post-item-date">15 Ocak 2025</span>
+                                    <span class="ba-post-item-tag">Teknoloji</span>
+                                    <span class="ba-post-item-status published">Yayında</span>
+                                </div>
+                            </div>
+                            <div class="ba-post-item-actions">
+                                <button class="ba-btn-icon edit-btn" data-id="1" aria-label="Düzenle">
+                                    <svg>...</svg>
+                                </button>
+                                <button class="ba-btn-icon delete-btn" data-id="1" aria-label="Sil">
+                                    <svg>...</svg>
+                                </button>
+                            </div>
+                        </div>
+                    -->
+                </div>
+
+                <!-- Boş Liste Mesajı -->
+                <div id="empty-list" class="ba-empty-list hidden">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="12" y1="18" x2="12" y2="12"/>
+                        <line x1="9" y1="15" x2="15" y2="15"/>
+                    </svg>
+                    <p>Henüz yazı eklenmedi.</p>
+                    <p class="ba-empty-sub">Soldaki formu kullanarak ilk yazınızı ekleyin.</p>
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- ============================================= -->
+        <!--        İÇE / DIŞA AKTARMA ARAÇ ÇUBUĞU         -->
+        <!-- ============================================= -->
+        <section class="ba-toolbar">
+
+            <div class="ba-toolbar-inner">
+
+                <!-- Sol: İçe/Dışa Aktarma -->
+                <div class="ba-toolbar-left">
+
+                    <!-- blog.json İndir -->
+                    <button id="export-btn" class="ba-btn ba-btn-outline">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        blog.json İndir
+                    </button>
+
+                    <!-- blog.json Yükle -->
+                    <label for="import-file" class="ba-btn ba-btn-outline ba-btn-upload">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        blog.json Yükle
+                    </label>
+                    <input
+                        type="file"
+                        id="import-file"
+                        class="ba-file-input"
+                        accept=".json"
+                    >
+
+                </div>
+
+                <!-- Sağ: Toplu İşlem -->
+                <div class="ba-toolbar-right">
+
+                    <!-- Tümünü Sil -->
+                    <button id="clear-all-btn" class="ba-btn ba-btn-danger ba-btn-sm">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"/>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                        Tümünü Sil
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================================= -->
+        <!--              CANLI ÖNİZLEME ALANI              -->
+        <!-- ============================================= -->
+        <section class="ba-panel ba-preview-panel">
+
+            <div class="ba-panel-header">
+                <h2 class="ba-panel-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    Canlı Önizleme
+                </h2>
+                <p class="ba-preview-hint">Form dolduruldukça kart burada güncellenir.</p>
+            </div>
+
+            <!-- Önizleme Kartı -->
+            <div class="ba-preview-area">
+                <div id="preview-card" class="ba-preview-card">
+
+                    <!-- Kapak Görseli Önizleme -->
+                    <div id="preview-cover" class="ba-preview-cover hidden">
+                        <img id="preview-cover-img" src="" alt="Kapak Önizleme" loading="lazy">
+                        <div class="ba-preview-cover-overlay"></div>
+                    </div>
+
+                    <!-- İçerik Önizleme -->
+                    <div class="ba-preview-content">
+                        <div class="ba-preview-meta">
+                            <time id="preview-date" class="ba-preview-date">Tarih seçilmedi</time>
+                            <span id="preview-tag" class="ba-preview-tag hidden">Etiket</span>
+                        </div>
+                        <h3 id="preview-title" class="ba-preview-title">Yazı başlığı buraya gelecek...</h3>
+                        <p id="preview-excerpt" class="ba-preview-excerpt">Kısa özet metni buraya gelecek...</p>
+                        <div class="ba-preview-footer">
+                            <span id="preview-readmore" class="ba-preview-readmore">
+                                Devamını Oku
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                    <polyline points="15 3 21 3 21 9"/>
+                                    <line x1="10" y1="14" x2="21" y2="3"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ============================================= -->
+    <!--            SİLME ONAY MODALI                   -->
+    <!-- ============================================= -->
+    <div id="delete-modal" class="ba-modal hidden">
+        <div class="ba-modal-backdrop"></div>
+        <div class="ba-modal-box">
+            <div class="ba-modal-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+            </div>
+            <h3 class="ba-modal-title">Yazıyı Sil</h3>
+            <p class="ba-modal-text" id="delete-modal-text">Bu yazıyı silmek istediğinize emin misiniz?</p>
+            <div class="ba-modal-actions">
+                <button id="delete-cancel" class="ba-btn ba-btn-ghost">İptal</button>
+                <button id="delete-confirm" class="ba-btn ba-btn-danger">Sil</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================= -->
+    <!--          TÜMÜNÜ SİL ONAY MODALI                -->
+    <!-- ============================================= -->
+    <div id="clear-modal" class="ba-modal hidden">
+        <div class="ba-modal-backdrop"></div>
+        <div class="ba-modal-box">
+            <div class="ba-modal-icon ba-modal-icon-danger">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    <line x1="10" y1="11" x2="10" y2="17"/>
+                    <line x1="14" y1="11" x2="14" y2="17"/>
+                </svg>
+            </div>
+            <h3 class="ba-modal-title">Tüm Yazıları Sil</h3>
+            <p class="ba-modal-text">Bu işlem geri alınamaz. Tüm yazılar silinecek.</p>
+            <div class="ba-modal-actions">
+                <button id="clear-cancel" class="ba-btn ba-btn-ghost">İptal</button>
+                <button id="clear-confirm" class="ba-btn ba-btn-danger">Tümünü Sil</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================= -->
+    <!--              BİLDİRİM (TOAST)                  -->
+    <!-- ============================================= -->
+    <div id="toast-container" class="ba-toast-container">
+        <!-- JS tarafından dinamik olarak oluşturulacak -->
+
+        <!--
+            Örnek yapı:
+
+            <div class="ba-toast success">
+                <svg>...</svg>
+                <span>Yazı başarıyla eklendi!</span>
+            </div>
+        -->
+    </div>
+
+
+    <!-- ============================================= -->
+    <!--               JavaScript Dosyaları             -->
+    <!-- ============================================= -->
+    <script src="js/blog-admin.js"></script>
+    <script src="js/blog-admin-export.js"></script>
+    <script src="js/blog-admin-import.js"></script>
+
+</body>
+</html>

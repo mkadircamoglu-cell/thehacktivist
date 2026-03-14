@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Yazıları">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Blog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/default-avatar.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Dosyaları -->
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+
+    <!-- ============================================= -->
+    <!--              ARKA PLAN EFEKT KATMANI           -->
+    <!-- ============================================= -->
+    <div class="blog-bg-noise"></div>
+    <div class="blog-bg-gradient"></div>
+
+
+    <!-- ============================================= -->
+    <!--                   HEADER                      -->
+    <!-- ============================================= -->
+    <header class="blog-header">
+        <div class="blog-header-inner">
+
+            <!-- Geri Dönüş Butonu -->
+            <a href="index.html" class="blog-back-button" aria-label="Ana Sayfaya Dön">
+                <svg class="blog-back-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"/>
+                    <polyline points="12 19 5 12 12 5"/>
+                </svg>
+                <span class="blog-back-text">Geri</span>
+            </a>
+
+            <!-- Blog Başlığı -->
+            <h1 class="blog-title">BLOG</h1>
+
+            <!-- Sağ Boşluk (Header Dengeleme) -->
+            <div class="blog-header-spacer"></div>
+
+        </div>
+    </header>
+
+
+    <!-- ============================================= -->
+    <!--              BLOG İÇERİK ALANI                -->
+    <!-- ============================================= -->
+    <main class="blog-main">
+
+        <!-- Üst Açıklama -->
+        <div class="blog-intro">
+            <p class="blog-intro-text">Yazılar, düşünceler ve projeler.</p>
+            <div class="blog-intro-line"></div>
+        </div>
+
+        <!-- Blog Kartları Grid Alanı -->
+        <div id="blog-grid" class="blog-grid">
+            <!-- JS tarafından blog.json'dan dinamik olarak doldurulacak -->
+
+            <!--
+                Örnek yapı (blog.js bu şekilde oluşturacak):
+
+                <article class="blog-card" data-id="1">
+                    <div class="blog-card-cover">
+                        <img src="assets/images/blog/post-1.jpg" alt="Yazı Başlığı" loading="lazy">
+                        <div class="blog-card-cover-overlay"></div>
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-card-meta">
+                            <time class="blog-card-date" datetime="2025-01-15">15 Ocak 2025</time>
+                            <span class="blog-card-tag">Teknoloji</span>
+                        </div>
+                        <h2 class="blog-card-title">Yazı Başlığı</h2>
+                        <p class="blog-card-excerpt">Kısa özet metni burada yer alacak...</p>
+                        <div class="blog-card-footer">
+                            <span class="blog-card-readmore">
+                                Devamını Oku
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2"
+                                     stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12 5 19 12 12 19"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="blog-card-glow"></div>
+                </article>
+            -->
+        </div>
+
+        <!-- Yükleniyor Göstergesi -->
+        <div id="blog-loader" class="blog-loader">
+            <div class="blog-loader-spinner">
+                <div class="blog-spinner-ring"></div>
+                <div class="blog-spinner-ring"></div>
+            </div>
+            <p class="blog-loader-text">Yazılar yükleniyor...</p>
+        </div>
+
+        <!-- Boş Durum Mesajı -->
+        <div id="blog-empty" class="blog-empty hidden">
+            <svg class="blog-empty-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+            <p class="blog-empty-text">Henüz yazı yayınlanmadı.</p>
+            <p class="blog-empty-sub">Yakında burada içerikler olacak.</p>
+        </div>
+
+        <!-- Hata Durumu Mesajı -->
+        <div id="blog-error" class="blog-error hidden">
+            <svg class="blog-error-icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <p class="blog-error-text">Yazılar yüklenirken bir hata oluştu.</p>
+            <button id="blog-retry" class="blog-retry-button">Tekrar Dene</button>
+        </div>
+
+    </main>
+
+
+    <!-- ============================================= -->
+    <!--                   FOOTER                      -->
+    <!-- ============================================= -->
+    <footer class="blog-footer">
+        <div class="blog-footer-line"></div>
+        <p class="blog-footer-text">
+            <a href="index.html" class="blog-footer-link">Ana Sayfa</a>
+            <span class="blog-footer-dot">·</span>
+            <span class="blog-footer-copy">&copy; <span id="footer-year"></span></span>
+        </p>
+    </footer>
+
+
+    <!-- ============================================= -->
+    <!--          SAYFA BAŞINA DÖN BUTONU               -->
+    <!-- ============================================= -->
+    <button id="scroll-top" class="blog-scroll-top hidden" aria-label="Sayfa Başına Dön">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"/>
+            <polyline points="5 12 12 5 19 12"/>
+        </svg>
+    </button>
+
+
+    <!-- ============================================= -->
+    <!--               JavaScript Dosyası               -->
+    <!-- ============================================= -->
+    <script src="js/blog.js"></script>
+
+</body>
+</html>
