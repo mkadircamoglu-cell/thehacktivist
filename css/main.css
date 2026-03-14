@@ -342,6 +342,8 @@ button {
     user-select: none;
     position: relative;
     overflow: hidden;
+    align-self: center;
+    flex-shrink: 0;
     transition:
         transform var(--transition-normal),
         box-shadow var(--transition-normal),
