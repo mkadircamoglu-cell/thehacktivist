@@ -44,6 +44,8 @@ const Renderer = (function () {
 
         // 10. Kutu renk değiştirme
         renderBoxColors(config.effects.changeBoxColors);
+        // 11. Blog butonunu render et
+        BlogButtonRenderer.render(config);
 
         console.log('[Renderer] Sayfa render tamamlandı.');
     }
@@ -290,6 +292,60 @@ const Renderer = (function () {
     }
 
     // Public API
+    return {
+        render
+    };
+
+})();
+/* ============================================= */
+/*    🆕 BLOG BUTONU RENDER & GLASSMORPHISM       */
+/* ============================================= */
+
+const BlogButtonRenderer = (function () {
+
+    /**
+     * Blog butonuna glassmorphism stilini uygular
+     * Profil kartıyla aynı arka plan, blur ve gradyan ayarlarını alır
+     * @param {Object} config - Parsed config objesi
+     */
+    function render(config) {
+        const blogBtn = document.getElementById('blog-button');
+        if (!blogBtn) return;
+
+        const a = config.appearance;
+
+        // Gradyan aç/kapat
+        if (!a.gradientEnabled) {
+            blogBtn.classList.add('no-gradient');
+        } else {
+            blogBtn.classList.remove('no-gradient');
+        }
+
+        // Profil kartıyla aynı arka plan stilini uygula
+        const opacity = a.profileOpacity;
+        const primaryRgb = ConfigLoader.hexToRgb(a.primaryColor);
+        const secondaryRgb = ConfigLoader.hexToRgb(a.secondaryColor);
+
+        if (a.gradientEnabled) {
+            blogBtn.style.background = `linear-gradient(135deg, rgba(${primaryRgb}, ${opacity}), rgba(${secondaryRgb}, ${opacity}))`;
+        } else {
+            blogBtn.style.background = `rgba(${primaryRgb}, ${opacity})`;
+        }
+
+        blogBtn.style.backdropFilter = `blur(${a.profileBlur}px)`;
+        blogBtn.style.webkitBackdropFilter = `blur(${a.profileBlur}px)`;
+
+        // Kutu renk değiştirme aktifse border vurgusu
+        if (config.effects && config.effects.changeBoxColors) {
+            blogBtn.style.borderColor = `rgba(${ConfigLoader.hexToRgb(a.accentColor)}, 0.2)`;
+        }
+
+        // Metin rengi
+        blogBtn.style.color = a.textColor || '#ffffff';
+
+        console.log('[BlogButtonRenderer] Blog butonu render edildi.');
+    }
+
     return {
         render
     };

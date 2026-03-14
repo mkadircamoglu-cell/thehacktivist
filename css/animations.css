@@ -350,3 +350,59 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-6px); }
 }
+/* ============================================= */
+/*    🆕 BLOG BUTONU ANİMASYONLARI               */
+/* ============================================= */
+
+/* --- Beyaz Glow Pulse (Hover olmadan sürekli hafif nefes) --- */
+.blog-button.glow-active {
+    animation: blogGlowPulse 3s ease-in-out infinite;
+}
+
+@keyframes blogGlowPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 8px rgba(255, 255, 255, 0.08),
+            0 0 16px rgba(255, 255, 255, 0.04);
+    }
+    50% {
+        box-shadow:
+            0 0 14px rgba(255, 255, 255, 0.15),
+            0 0 28px rgba(255, 255, 255, 0.06),
+            0 0 44px rgba(255, 255, 255, 0.03);
+    }
+}
+
+/* --- Hover'da beyaz glow patlama efekti --- */
+.blog-button:hover {
+    animation: blogGlowBurst 0.4s ease-out forwards;
+}
+
+@keyframes blogGlowBurst {
+    0% {
+        box-shadow:
+            0 0 8px rgba(255, 255, 255, 0.08),
+            0 0 16px rgba(255, 255, 255, 0.04);
+    }
+    100% {
+        box-shadow:
+            0 0 12px rgba(255, 255, 255, 0.2),
+            0 0 30px rgba(255, 255, 255, 0.1),
+            0 0 55px rgba(255, 255, 255, 0.05),
+            0 0 80px rgba(255, 255, 255, 0.02);
+    }
+}
+
+/* --- Ok ikonu hover kayma animasyonu --- */
+.blog-button:hover .blog-button-arrow {
+    animation: arrowSlide 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes arrowSlide {
+    0% {
+        transform: translateX(2px);
+    }
+    100% {
+        transform: translateX(6px);
+    }
+}

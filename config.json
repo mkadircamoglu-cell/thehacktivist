@@ -7,7 +7,7 @@
     },
     "background": {
         "youtubeVideoID": "53O-PvffEh4",
-        "overlayEffect": "none"
+        "overlayEffect": "matrix"
     },
     "appearance": {
         "profileOpacity": 0.4,
@@ -22,11 +22,11 @@
     },
     "effects": {
         "animatedTitle": true,
-        "titleEffect": "none",
+        "titleEffect": "glitch",
         "glowUsername": true,
         "glowSocials": true,
         "glowBadges": true,
-        "avatarEffect": "none",
+        "avatarEffect": "ring-pulse",
         "changeBoxColors": true
     },
     "audio": {
