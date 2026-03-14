@@ -101,68 +101,33 @@
 /*         (TAMAMEN YENİDEN TASARLANDI)           */
 /* ============================================= */
 
-/* --- Temel Parıltı Animasyonu --- */
+/* ============================================= */
+/*        KULLANICI ADI GLOW / IŞILTI             */
+/* ============================================= */
+
 .username.glow-active {
-    position: relative;
-    animation: glowPulse 3s ease-in-out infinite;
+    text-shadow:
+        0 0 6px rgba(var(--accent-color-rgb, 233, 69, 96), 0.6),
+        0 0 15px rgba(var(--accent-color-rgb, 233, 69, 96), 0.4),
+        0 0 30px rgba(var(--accent-color-rgb, 233, 69, 96), 0.25),
+        0 0 50px rgba(var(--accent-color-rgb, 233, 69, 96), 0.1);
+    animation: glowPulse 5s ease-in-out 1s infinite;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    will-change: filter;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 @keyframes glowPulse {
     0%, 100% {
-        text-shadow:
-            0 0 4px rgba(255, 255, 255, 0.4),
-            0 0 11px var(--accent-color),
-            0 0 22px var(--accent-color),
-            0 0 40px var(--accent-color);
-        filter: brightness(1);
+        filter: brightness(1.05);
     }
     50% {
-        text-shadow:
-            0 0 6px rgba(255, 255, 255, 0.6),
-            0 0 16px var(--accent-color),
-            0 0 35px var(--accent-color),
-            0 0 60px var(--accent-color),
-            0 0 80px var(--accent-color);
-        filter: brightness(1.15);
+        filter: brightness(1.2);
     }
-}
-
-/* --- Altında Yansıma Efekti --- */
-.username.glow-active::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: var(--accent-color);
-    opacity: 0.12;
-    transform: scaleY(-0.4) translateY(-4px);
-    filter: blur(4px);
-    pointer-events: none;
-    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
-}
-
-/* --- Işık Geçişi Şeridi (Shimmer) --- */
-.username.glow-active::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -10%;
-    width: 30%;
-    height: calc(100% + 4px);
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0) 20%,
-        rgba(255, 255, 255, 0.25) 50%,
-        rgba(255, 255, 255, 0) 80%,
-        transparent 100%
-    );
-    animation: shimmerSlide 4s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 1;
 }
 
 @keyframes shimmerSlide {

@@ -187,11 +187,13 @@ button {
 .username {
     font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.02em;
     color: var(--text-color);
-    transition: text-shadow var(--transition-normal);
     line-height: 1.3;
     word-break: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 .username.glow-active {
@@ -342,8 +344,6 @@ button {
     user-select: none;
     position: relative;
     overflow: hidden;
-    align-self: center;
-    flex-shrink: 0;
     transition:
         transform var(--transition-normal),
         box-shadow var(--transition-normal),
