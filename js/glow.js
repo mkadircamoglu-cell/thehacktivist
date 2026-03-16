@@ -14,11 +14,20 @@ const GlowManager = (function () {
         // Kullanıcı adı glow
         applyUsernameGlow(effects.glowUsername);
 
+        // Açıklama glow
+        applyDescriptionGlow(effects.glowUsername);
+
+        // Konum glow
+        applyLocationGlow(effects.glowUsername);
+
         // Sosyal ikonlar glow
         applySocialsGlow(effects.glowSocials);
 
         // Badge'ler glow
         applyBadgesGlow(effects.glowBadges);
+
+        // Blog butonu glow
+        applyBlogButtonGlow(effects.glowSocials);
 
         console.log('[GlowManager] Glow efektleri uygulandı.');
     }
@@ -38,6 +47,44 @@ const GlowManager = (function () {
     }
 
     /**
+     * Açıklama metnine glow efekti uygular/kaldırır
+     */
+    function applyDescriptionGlow(enabled) {
+        const description = document.getElementById('description');
+        if (!description) return;
+
+        if (enabled) {
+            description.classList.add('glow-active');
+        } else {
+            description.classList.remove('glow-active');
+        }
+    }
+
+    /**
+     * Konum metnine ve ikonuna glow efekti uygular/kaldırır
+     */
+    function applyLocationGlow(enabled) {
+        const locationText = document.querySelector('.location-text');
+        const locationIcon = document.querySelector('.location-icon');
+
+        if (locationText) {
+            if (enabled) {
+                locationText.classList.add('glow-active');
+            } else {
+                locationText.classList.remove('glow-active');
+            }
+        }
+
+        if (locationIcon) {
+            if (enabled) {
+                locationIcon.classList.add('glow-active');
+            } else {
+                locationIcon.classList.remove('glow-active');
+            }
+        }
+    }
+
+    /**
      * Sosyal medya ikonlarına glow efekti uygular/kaldırır
      */
     function applySocialsGlow(enabled) {
@@ -53,7 +100,7 @@ const GlowManager = (function () {
     }
 
     /**
-     * Badge'lere glow efekti (şimdilik placeholder)
+     * Badge'lere glow efekti
      */
     function applyBadgesGlow(enabled) {
         const badges = document.querySelectorAll('.badge');
@@ -65,6 +112,20 @@ const GlowManager = (function () {
                 badge.classList.remove('glow-active');
             }
         });
+    }
+
+    /**
+     * Blog butonuna glow efekti uygular/kaldırır
+     */
+    function applyBlogButtonGlow(enabled) {
+        const blogBtn = document.getElementById('blog-button');
+        if (!blogBtn) return;
+
+        if (enabled) {
+            blogBtn.classList.add('glow-active');
+        } else {
+            blogBtn.classList.remove('glow-active');
+        }
     }
 
     /**
