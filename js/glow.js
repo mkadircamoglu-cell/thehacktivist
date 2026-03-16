@@ -86,33 +86,3 @@ const GlowManager = (function () {
     };
 
 })();
-/* ============================================= */
-/*    🆕 BLOG BUTONU GLOW TETİKLEMESİ            */
-/* ============================================= */
-
-/**
- * Blog butonuna glow efekti uygular/kaldırır
- * Sosyal ikonların glow durumuna bağlı çalışır
- * @param {boolean} enabled - Glow aktif mi
- */
-function applyBlogButtonGlow(enabled) {
-    const blogBtn = document.getElementById('blog-button');
-    if (!blogBtn) return;
-
-    if (enabled) {
-        blogBtn.classList.add('glow-active');
-    } else {
-        blogBtn.classList.remove('glow-active');
-    }
-}
-
-// Mevcut apply fonksiyonuna blog butonu desteği ekle
-const _originalApply = GlowManager.apply;
-
-GlowManager.apply = function (effects) {
-    // Önce mevcut glow'ları uygula
-    _originalApply(effects);
-
-    // Blog butonuna da glow uygula (sosyal ikonlarla aynı ayarı kullanır)
-    applyBlogButtonGlow(effects.glowSocials);
-};

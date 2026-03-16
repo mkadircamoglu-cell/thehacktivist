@@ -1,17 +1,17 @@
 {
     "profile": {
         "username": "thehacktivist",
-        "description": "Siber güvenlik ile uğraşıyorum, zararlı yazılım geliştirme ve analiz etme üzerine çalışıyorum.",
+        "description": "Siber güvenlik ile ilgileniyorum.",
         "location": "İstanbul",
         "avatarURL": "assets/images/default-avatar.png"
     },
     "background": {
         "youtubeVideoID": "53O-PvffEh4",
-        "overlayEffect": "none"
+        "overlayEffect": "matrix"
     },
     "appearance": {
-        "profileOpacity": 0.1,
-        "profileBlur": 0,
+        "profileOpacity": 0.4,
+        "profileBlur": 10,
         "gradientEnabled": true,
         "primaryColor": "#000000",
         "secondaryColor": "#6e6e6e",
@@ -22,11 +22,11 @@
     },
     "effects": {
         "animatedTitle": true,
-        "titleEffect": "none",
+        "titleEffect": "glitch",
         "glowUsername": true,
         "glowSocials": true,
         "glowBadges": true,
-        "avatarEffect": "glow",
+        "avatarEffect": "ring-pulse",
         "changeBoxColors": true
     },
     "audio": {
