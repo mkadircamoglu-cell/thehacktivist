@@ -2,6 +2,16 @@
     "posts": [
         {
             "id": 1,
+            "title": "AI Jailbreaking nedir ?",
+            "date": "2026-04-06",
+            "tag": "AI",
+            "excerpt": "AI Jailbreaking nedir ? Nasıl ve neden yapılır ?",
+            "cover": "",
+            "slug": "ai-jailbreaking-nedir",
+            "url": "https://medium.com/@m.kadircamoglu/ai-jailbreak-nedir-ab55d97960cb"
+        },
+        {
+            "id": 2,
             "title": "Merhaba",
             "date": "2026-03-16",
             "tag": "Giriş",
