@@ -16,32 +16,23 @@ const Renderer = (function () {
 
         // 1. CSS değişkenlerini ayarla
         applyCSSVariables(config);
-
         // 2. Profil bilgilerini render et
         renderProfile(config.profile);
-
         // 3. Glassmorphism kutusunu ayarla
         renderGlass(config.appearance);
-
         // 4. Avatar efektlerini uygula
         renderAvatarEffect(config.effects);
-
         // 5. Başlık efektlerini uygula
         renderTitleEffect(config.effects, config.profile.username);
-
-        // 6. Sosyal medya ikonlarını oluştur
+        // 6. Sosyal medya ikonları oluştur
         renderSocials(config.socials, config.icons, config.appearance);
-
-        // 7. YouTube arka planı başlat
-        YouTubeBG.init(config.background.youtubeVideoID, config.audio.soundControl);
-
-        // 8. Overlay efektlerini başlat
-        Effects.init(config.background.overlayEffect);
-
+        
+        // 7. YEREL VİDEO SES KONTROLÜNÜ BAŞLAT (Burayı ekledik!)
+        initLocalVideoSound(config.audio);
+        
         // 9. Glow efektlerini uygula
         GlowManager.apply(config.effects);
         GlowManager.setGlowColor(config.appearance.accentColor);
-
         // 10. Kutu renk değiştirme
         renderBoxColors(config.effects.changeBoxColors);
         // 11. Blog butonunu render et
@@ -289,6 +280,36 @@ const Renderer = (function () {
         } else {
             card.classList.remove('custom-colors');
         }
+    }
+    /* ========================================= */
+    /*        YEREL VİDEO SES KONTROLÜ           */
+    /* ========================================= */
+    function initLocalVideoSound(audioConfig) {
+        const video = document.getElementById('bg-video');
+        const btn = document.getElementById('sound-toggle');
+        const iconMuted = document.getElementById('icon-muted');
+        const iconUnmuted = document.getElementById('icon-unmuted');
+
+        // Eğer video yoksa, buton yoksa veya admin panelinden kapalıysa hiçbir şey yapma
+        if (!video || !btn || !audioConfig || !audioConfig.soundControl) return;
+
+        // Butonu görünür yap
+        btn.classList.remove('hidden');
+
+        // Butona tıklanınca olacaklar
+        btn.addEventListener('click', function () {
+            // Videonun sesini aç/kapat (true/false)
+            video.muted = !video.muted;
+
+            // Duruma göre ikonları değiştir
+            if (video.muted) {
+                iconMuted.classList.remove('hidden');
+                iconUnmuted.classList.add('hidden');
+            } else {
+                iconMuted.classList.add('hidden');
+                iconUnmuted.classList.remove('hidden');
+            }
+        });
     }
 
     // Public API

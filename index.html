@@ -28,18 +28,13 @@
 <!-- ============================================= -->
 <!--        KATMAN 1: YouTube Arka Plan Video       -->
 <!-- ============================================= -->
-<div id="youtube-bg" class="youtube-background">
-    <div id="youtube-overlay" class="youtube-overlay"></div>
-    <iframe
-        id="youtube-player"
-        class="youtube-iframe"
-        src=""
-        title="Background Video"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-        loading="lazy"
-    ></iframe>
+
+<div class="video-background">
+    <div class="video-overlay"></div>
+    <video id="bg-video" autoplay loop muted playsinline>
+        <!-- Videonu assets klasörüne koymalısın -->
+        <source src="assets/background.mp4" type="video/mp4">
+    </video>
 </div>
 
 
@@ -148,8 +143,6 @@
     <!--               JavaScript Dosyaları             -->
     <!-- ============================================= -->
     <script src="js/config-loader.js"></script>
-    <script src="js/youtube-bg.js"></script>
-    <script src="js/effects.js"></script>
     <script src="js/glow.js"></script>
     <script src="js/renderer.js"></script>
     <script src="js/app.js"></script>

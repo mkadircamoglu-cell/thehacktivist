@@ -38,18 +38,22 @@ const BlogApp = (function () {
     /*              BAŞLATICI (INIT)              */
     /* ========================================= */
 
-    function init() {
-        console.log('[BlogApp] Başlatılıyor...');
+function init() {
+        console.log('[BlogApp] Başlıyor...');
+        
+        // YAZILARA DÖN BUTONU KODU BURAYA DÜZGÜNCE EKLENDİ
+        document.getElementById('back-to-grid')?.addEventListener('click', function() {
+            document.getElementById('single-post-view').classList.add('hidden');
+            document.getElementById('blog-grid').classList.remove('hidden');
+            document.querySelector('.blog-intro').classList.remove('hidden');
+        });
 
-        // Footer yılını ayarla
+        // Footer yılı ayarla
         setFooterYear();
-
         // Scroll olaylarını dinle
         initScrollEvents();
-
         // Tekrar dene butonunu dinle
         initRetryButton();
-
         // Blog verilerini yükle
         loadPosts();
     }
@@ -249,24 +253,32 @@ const BlogApp = (function () {
      * @param {Object} post - Yazı verisi
      */
     function handleCardClick(post) {
-        var hasURL = post.url && post.url.trim() !== '';
+    // 1. Kartları ve üst yazıyı gizle
+    document.getElementById('blog-grid').classList.add('hidden');
+    document.querySelector('.blog-intro').classList.add('hidden');
 
-        if (hasURL) {
-            // Harici linki yeni sekmede aç
-            window.open(post.url, '_blank', 'noopener,noreferrer');
-            console.log('[BlogApp] Harici yazı açıldı: ' + post.title);
-        } else {
-            // URL yoksa kartı hafifçe titret (görsel geri bildirim)
-            var card = DOM.grid.querySelector('[data-id="' + post.id + '"]');
-            if (card) {
-                card.classList.add('shake');
-                setTimeout(function () {
-                    card.classList.remove('shake');
-                }, 500);
-            }
-            console.log('[BlogApp] Yazı henüz yayınlanmadı: ' + post.title);
-        }
+    // 2. Yazı detay alanını doldur
+    document.getElementById('sp-title').textContent = post.title;
+    document.getElementById('sp-date').textContent = formatDate(post.date);
+    document.getElementById('sp-tag').textContent = post.tag || '';
+    
+    // Güvenlik: Normalde escapeHTML kullanılır ama içerikte <p>, <br> kullanabilmek 
+    // için innerHTML kullanıyoruz. (JSON dosyanı sadece sen yönettiğin için bu güvenlidir).
+    document.getElementById('sp-content').innerHTML = post.content || '<p>İçerik bulunamadı.</p>';
+
+    // Kapak fotoğrafı varsa göster, yoksa gizle
+    var coverImg = document.getElementById('sp-cover');
+    if (post.cover && post.cover.trim() !== '') {
+        coverImg.src = post.cover;
+        coverImg.style.display = 'block';
+    } else {
+        coverImg.style.display = 'none';
     }
+
+    // 3. Yazı okuma alanını göster ve en üste kaydır
+    document.getElementById('single-post-view').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
     /* ========================================= */
     /*          PLATFORM TESPİT FONKSİYONU       */

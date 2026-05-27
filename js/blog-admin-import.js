@@ -162,7 +162,7 @@ const BlogAdminImport = (function () {
             excerpt: (post.excerpt || '').trim(),
             cover: (post.cover || '').trim(),
             slug: (post.slug || '').trim(),
-            url: (post.url || '').trim()
+            content: (post.content || '').trim()
         };
     }
 

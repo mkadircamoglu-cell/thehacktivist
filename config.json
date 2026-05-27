@@ -1,7 +1,7 @@
 {
     "profile": {
         "username": "thehacktivist",
-        "description": "Siber güvenlik ile uğraşıyorum, zararlı yazılım geliştirme ve analiz etme üzerine çalışıyorum.",
+        "description": "Bir zincir en zayıf halkası kadar sağlamdır.Siber güvenlik zincirindeki en zayıf halka ise insan zihnidir. Çünkü sistemler kodlarla, insanlar ise korku, güven ve hatalarla çalışır.",
         "location": "İstanbul",
         "avatarURL": "assets/images/default-avatar.png"
     },
@@ -11,14 +11,14 @@
     },
     "appearance": {
         "profileOpacity": 0.1,
-        "profileBlur": 3,
+        "profileBlur": 5,
         "gradientEnabled": true,
         "primaryColor": "#000000",
         "secondaryColor": "#6e6e6e",
         "accentColor": "#ffffff",
-        "textColor": "#000000",
+        "textColor": "#e0e0e0",
         "backgroundColor": "#0f0f0f",
-        "iconColor": "#000000"
+        "iconColor": "#ffffff"
     },
     "effects": {
         "animatedTitle": true,
@@ -26,7 +26,7 @@
         "glowUsername": true,
         "glowSocials": true,
         "glowBadges": true,
-        "avatarEffect": "glow",
+        "avatarEffect": "none",
         "changeBoxColors": true
     },
     "audio": {
@@ -36,11 +36,6 @@
         "monochrome": true
     },
     "socials": [
-        {
-            "platform": "telegram",
-            "url": "https://t.me/bluexe0",
-            "icon": "assets/icons/telegram.svg"
-        },
         {
             "platform": "github",
             "url": "https://github.com/mkadircamoglu-cell",

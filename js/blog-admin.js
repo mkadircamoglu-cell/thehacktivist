@@ -21,7 +21,7 @@ const BlogAdmin = (function () {
         postTag: document.getElementById('post-tag'),
         postExcerpt: document.getElementById('post-excerpt'),
         postCover: document.getElementById('post-cover'),
-        postUrl: document.getElementById('post-url'),
+        postContent: document.getElementById('post-content'),
         titleCount: document.getElementById('title-count'),
         excerptCount: document.getElementById('excerpt-count'),
 
@@ -273,7 +273,7 @@ const BlogAdmin = (function () {
         var tag = DOM.postTag.value.trim();
         var excerpt = DOM.postExcerpt.value.trim();
         var cover = DOM.postCover.value.trim();
-        var url = DOM.postUrl.value.trim();
+        var content = DOM.postContent.value.trim();
 
         // Validasyon
         if (!title) {
@@ -307,7 +307,7 @@ const BlogAdmin = (function () {
                 posts[index].tag = tag;
                 posts[index].excerpt = excerpt;
                 posts[index].cover = cover;
-                posts[index].url = url;
+                posts[index].content = content;
                 posts[index].slug = slug;
 
                 showToast('Yazı güncellendi!', 'success');
@@ -361,7 +361,7 @@ const BlogAdmin = (function () {
         DOM.postTag.value = post.tag || '';
         DOM.postExcerpt.value = post.excerpt || '';
         DOM.postCover.value = post.cover || '';
-        DOM.postUrl.value = post.url || '';
+        DOM.postContent.value = post.content || '';
 
         // Karakter sayaçlarını güncelle
         updateCharCount(DOM.postTitle, DOM.titleCount, 120);
@@ -536,7 +536,7 @@ const BlogAdmin = (function () {
             div.classList.add('active');
         }
 
-        var hasURL = post.url && post.url.trim() !== '';
+        var hasURL = post.content && post.content.trim() !== '';
         var statusClass = hasURL ? 'published' : 'draft';
         var statusText = hasURL ? 'Yayında' : 'Taslak';
 
@@ -615,7 +615,7 @@ const BlogAdmin = (function () {
         var tag = DOM.postTag ? DOM.postTag.value.trim() : '';
         var excerpt = DOM.postExcerpt ? DOM.postExcerpt.value.trim() : '';
         var cover = DOM.postCover ? DOM.postCover.value.trim() : '';
-        var url = DOM.postUrl ? DOM.postUrl.value.trim() : '';
+        var content = DOM.postContent ? DOM.postContent.value.trim() : '';
 
         // Başlık
         if (DOM.previewTitle) {
@@ -660,24 +660,21 @@ const BlogAdmin = (function () {
 
         // Devamını Oku / Platform
         if (DOM.previewReadmore) {
-            if (url) {
-                var platform = detectPlatform(url);
-                var text = platform ? ('Okumaya Git · ' + platform) : 'Devamını Oku';
-                DOM.previewReadmore.innerHTML = text +
+            if (content) {
+                DOM.previewReadmore.innerHTML = 'Okumaya Başla' +
                     ' <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
                     '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>' +
                     '<polyline points="15 3 21 3 21 9"/>' +
                     '<line x1="10" y1="14" x2="21" y2="3"/>' +
                     '</svg>';
             } else {
-                DOM.previewReadmore.innerHTML = 'Devamını Oku' +
+                DOM.previewReadmore.innerHTML = 'Yakında' +
                     ' <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
                     '<line x1="5" y1="12" x2="19" y2="12"/>' +
                     '<polyline points="12 5 19 12 12 19"/>' +
                     '</svg>';
             }
         }
-    }
 
     /* ========================================= */
     /*          PLATFORM TESPİT FONKSİYONU       */

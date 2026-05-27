@@ -168,18 +168,18 @@
                         <p class="ba-hint">Yerel dosya yolu veya harici URL. Boş bırakılabilir.</p>
                     </div>
 
-                    <!-- Harici Yazı Linki -->
+                    <!-- Yazı İçeriği -->
                     <div class="ba-field">
-                        <label for="post-url" class="ba-label">
-                            Yazı Linki (Medium, Dev.to vb.)
+                        <label for="post-content" class="ba-label">
+                            Yazı İçeriği (HTML Destekler)
                         </label>
-                        <input
-                            type="url"
-                            id="post-url"
-                            class="ba-input"
-                            placeholder="https://medium.com/@kullanici/yazi-basligi"
-                        >
-                        <p class="ba-hint">Yazının yayınlandığı platform linki. Boş bırakılırsa "Yakında" görünür.</p>
+                        <textarea
+                            id="post-content"
+                            class="ba-textarea"
+                            placeholder="<p>Yazınızın tamamı buraya gelecek...</p>"
+                            rows="8"
+                        ></textarea>
+                        <p class="ba-hint">Blog yazınızın tam içeriği. Kalın yazı için &lt;strong&gt;, alt satır için &lt;br&gt; gibi HTML etiketleri kullanabilirsiniz. Boş bırakılırsa kartta "Yakında" yazar.</p>
                     </div>
 
                     <!-- Butonlar -->
