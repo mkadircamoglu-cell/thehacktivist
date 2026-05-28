@@ -2,12 +2,13 @@
     "posts": [
         {
             "id": 1,
-            "title": "X",
-            "date": "X",
-            "tag": "X",
-            "excerpt": "X",
+            "title": "Betonda çiçekler",
+            "date": "2018-08-12",
+            "tag": "RA",
+            "excerpt": "HE",
             "cover": "assets/images/kapak1.jpeg",
-            "content": "X"
+            "slug": "betonda-iekler",
+            "content": "AMINA\nKODUĞUMUN\nHAYATINA\nSAVAŞMAYA\nMI \nGELDİK\nAMK"
         }
     ]
 }
