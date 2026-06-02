@@ -2,6 +2,16 @@
     "posts": [
         {
             "id": 1,
+            "title": "O ALLAHINIZIN EN SEVDİĞİ KULARINI ALDIM",
+            "date": "2025-11-15",
+            "tag": "",
+            "excerpt": "x",
+            "cover": "assets/images/RESIM.jpeg",
+            "slug": "o-allahinizin-en-sevdii-kularini-aldim",
+            "content": "O ALLAHINIZ YOK MU O ALLAHINIZ ONU EN ÇOK SEVENLERİ ALDIM SİKTİM ATTIM AMK ŞEYTANIN KARISINI SİKTİM OROSPU ÇOCUKLARI SİZ KİMSİNİZ ÖRTÜLÜLER TEK TEL ELLERİMDE İNLEDİ"
+        },
+        {
+            "id": 2,
             "title": "Betonda çiçekler",
             "date": "2018-08-12",
             "tag": "RA",
